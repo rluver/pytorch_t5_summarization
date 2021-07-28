@@ -7,7 +7,6 @@ Created on Tue Jul 20 15:16:30 2021
 
 
 import torch
-import torch.nn as nn
 import pytorch_lightning as pl
 from transformers import AdamW, MT5ForConditionalGeneration
 
@@ -18,7 +17,7 @@ class Summarizer(pl.LightningModule):
     
     def __init__(self):
         super().__init__()
-        self.model = MT5ForConditionalGeneration.from_pretrained('google/mt5-base', return_dict = True, max_length = 512)
+        self.model = MT5ForConditionalGeneration.from_pretrained('google/mt5-small', return_dict = True)
         
         
     def forward(self, input_ids, attention_mask, decoder_attention_mask, labels = None):
@@ -88,4 +87,4 @@ class Summarizer(pl.LightningModule):
     
     
     def configure_optimizers(self):
-        return AdamW(self.parameters(), lr = 1e-4)
+        return AdamW(self.parameters(), lr = 1e-5)
