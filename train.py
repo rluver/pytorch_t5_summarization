@@ -43,7 +43,7 @@ class NewsSummaryDataset(Dataset):
         
         data_row = self.data.iloc[index]
 
-        encoded_article = tokenizer(
+        encoded_article = self.tokenizer(
             ' '.join(data_row.article_original),
             max_length = self.text_max_token_length, 
             padding = 'max_length', 
@@ -54,7 +54,7 @@ class NewsSummaryDataset(Dataset):
             )
         
         
-        encoded_summarized_article = tokenizer(
+        encoded_summarized_article = self.tokenizer(
             data_row.abstractive,
             max_length = self.summary_max_token_length,
             padding = 'max_length',
