@@ -14,7 +14,7 @@ if  __name__ == '__main__':
     summarize_model = Summarizer.load_from_checkpoint(r'checkpoints\best-checkpoint.ckpt')
     summarize_model.freeze()
     
-    summarize = Summarize(tokenizer, summarize_model)
+    summarizer = Summarize(tokenizer, summarize_model)
     
     text = ''
-    summarize.summarize(text)    
+    summarizer.summarize(text)    
